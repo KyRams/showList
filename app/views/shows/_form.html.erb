@@ -1,0 +1,38 @@
+<%= form_with(model: show) do |form| %>
+  <% if show.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(show.errors.count, "error") %> prohibited this show from being saved:</h2>
+
+      <ul>
+        <% show.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :show %>
+    <%= form.text_field :show, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <% form.label :user_id %>
+    <%= form.number_field :user_id, id: :show_user_id, class:"form-control", value: current_user.id, type: :hidden %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :genre %>
+    <%= form.text_field :genre, class:"form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :site %>
+    <%= form.text_field :site, class:"form-control" %>
+  </div>
+
+  <div class="actions">
+    <br/>
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+<% end %>

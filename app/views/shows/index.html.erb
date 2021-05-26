@@ -1,0 +1,70 @@
+<%if user_signed_in? %>
+
+  <h1>Watch Later List</h1>
+
+  <table class="table table-dark table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Show</th>
+        <th>Genre</th>
+        <th>Site</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <% @shows.each do |show| %>
+        <tr>
+          <%if show.user == current_user%>
+            <td><%= link_to show.show, show %></td>
+            <td><%= show.genre %></td>
+            <td><%= show.site %></td>
+            <td><%= link_to 'Remove', show, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm"%></td
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Show', new_show_path, class:"btn btn-secondary" %>
+
+<% else %>
+  <h1>Welcome to Watch Later.</h1>
+  <p>A website to track the shows you want to watch.</p>
+  <br/>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card" style="width: 35rem; height: 20rem;">
+          <%= image_tag("list-example.png")%>
+          <div class="card-body">
+            <h5 class="card-title">Lists</h5>
+            <p class="card-text">Keep track of the shows and movies you've been dying to see!</p>
+            <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card" style="width: 35rem; height: 20rem;">
+        <%= image_tag("edit-example.png")%>
+        <div class="card-body">
+          <h5 class="card-title">Editing</h5>
+          <p class="card-text">Change or remove whatever you want!</p>
+          <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary" %>
+        </div>
+        </div>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+<% end %>

@@ -1,0 +1,19 @@
+
+<%if @show.user == current_user%>
+	<div class="col-md-6">
+		<div class="h-100 p-5 text-white bg-dark rounded-3">
+		  <h2><%= @show.show %></h2>
+		  <p><%= @show.genre %> <br>
+		  	<a href="https://<%= @show.site %>/">Visit <%= @show.site %></a>
+		  </p>
+
+
+			<%if @show.user == current_user%>
+		  	<%= link_to 'Edit', edit_show_path, class:"btn btn-secondary" %>
+			<% end %>
+		  <%= link_to 'Back', shows_path, class:"btn btn-secondary" %>
+			<%= link_to 'Remove', @show, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger "%>
+
+		</div>
+	</div>
+<% end %>
